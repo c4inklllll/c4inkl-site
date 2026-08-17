@@ -2,7 +2,7 @@ const factButton = document.getElementById("factButton");
 const factText = document.getElementById("factText");
 
 factButton.addEventListener("click", () => {
-  factText.textContent = "💗 Я учусь создавать сайты, и это моя первая работа!";
+  factText.textContent = "💗Мне 16 лет, я с крг ^-^";
 });
 
 const themeButton = document.getElementById("themeButton");
