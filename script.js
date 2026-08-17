@@ -44,3 +44,58 @@ if (messageForm && messageInput && formStatus) {
     }
   });
 }
+// Настройки: шестерёнка, тема и цвет
+const settingsButton = document.getElementById("settingsButton");
+const settingsPanel = document.getElementById("settingsPanel");
+const themeChoices = document.querySelectorAll(".theme-choice");
+const colorChoices = document.querySelectorAll(".color-choice");
+
+let selectedTheme = localStorage.getItem("siteTheme") || "light";
+let selectedColor = localStorage.getItem("siteColor") || "pink";
+
+function applyAppearance() {
+  document.body.dataset.theme = selectedTheme;
+  document.body.dataset.color = selectedColor;
+
+  themeChoices.forEach((button) => {
+    button.classList.toggle("active", button.dataset.mode === selectedTheme);
+  });
+
+  colorChoices.forEach((button) => {
+    button.classList.toggle("active", button.dataset.color === selectedColor);
+  });
+
+  localStorage.setItem("siteTheme", selectedTheme);
+  localStorage.setItem("siteColor", selectedColor);
+}
+
+if (settingsButton && settingsPanel) {
+  settingsButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    settingsPanel.classList.toggle("is-open");
+  });
+
+  settingsPanel.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  document.addEventListener("click", () => {
+    settingsPanel.classList.remove("is-open");
+  });
+
+  themeChoices.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedTheme = button.dataset.mode;
+      applyAppearance();
+    });
+  });
+
+  colorChoices.forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedColor = button.dataset.color;
+      applyAppearance();
+    });
+  });
+
+  applyAppearance();
+}
