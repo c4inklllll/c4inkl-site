@@ -140,11 +140,34 @@
 
       <p>Платина</p>
 
-      <audio class="track-audio" controls>
-    <source src="opiaty.mp3" type="audio/mpeg">
-    Твой браузер не поддерживает аудио.
-</audio>
+      <div class="custom-player">
 
+  <button id="playTrack" class="play-track" type="button">
+    ▶
+  </button>
+
+  <span id="trackTime">0:00</span>
+
+  <input
+    id="trackProgress"
+    class="track-progress"
+    type="range"
+    min="0"
+    max="100"
+    value="0"
+  >
+
+  <span id="trackDuration">0:00</span>
+
+  <button id="volumeTrack" class="volume-track" type="button">
+    🔊
+  </button>
+
+</div>
+
+<audio id="favoriteTrack">
+  <source src="opiaty.mp3" type="audio/mpeg">
+</audio>
     </div>
 
   </div>
