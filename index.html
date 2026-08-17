@@ -48,9 +48,29 @@
 
     <button id="factButton">✨ Узнать факт обо мне</button>
 <p id="factText"></p>
-    <button id="themeButton">🌙 Тёмная тема</button>
   </main>
 
   <script src="script.js"></script
 </body>
+  <button class="settings-button" id="settingsButton" aria-label="Открыть настройки">
+  ⚙️
+</button>
+
+<div class="settings-panel" id="settingsPanel">
+  <h3>Настройки</h3>
+
+  <p>Тема</p>
+  <div class="settings-row">
+    <button class="theme-choice active" data-mode="light">☀️ Светлая</button>
+    <button class="theme-choice" data-mode="dark">🌙 Тёмная</button>
+  </div>
+
+  <p>Цвет</p>
+  <div class="color-choices">
+    <button class="color-choice active" data-color="pink" title="Розовый"></button>
+    <button class="color-choice purple" data-color="purple" title="Фиолетовый"></button>
+    <button class="color-choice green" data-color="green" title="Зелёный"></button>
+    <button class="color-choice gray" data-color="gray" title="Чёрно-серый"></button>
+  </div>
+</div>
 </html>
