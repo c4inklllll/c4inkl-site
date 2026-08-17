@@ -1430,3 +1430,29 @@ textarea {
     font-size: 11px;
     font-weight: 600;
 }
+/* ===== GLASS VOLUME POPUP ===== */
+
+.volume-popup {
+    background: rgba(255, 255, 255, 0.22);
+
+    /* вот это делает размытие того,
+       что находится ЗА окном */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    box-shadow:
+        0 8px 30px rgba(236, 72, 153, 0.15);
+
+    border-radius: 18px;
+
+    /* оставляем окно на том же месте */
+    right: 0;
+    bottom: 48px;
+}
+
+/* Убираем цифру громкости */
+#volumeValue {
+    display: none;
+}
