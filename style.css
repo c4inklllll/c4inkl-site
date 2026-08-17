@@ -515,3 +515,176 @@ body.dark-theme {
   border-color: #4a1d35;
   transform: scale(1.13);
 }
+/* ===== Цветовые схемы ===== */
+
+body {
+  --bg-start: #ffd6e7;
+  --bg-end: #f9c5d8;
+  --card-bg: #ffffff;
+  --text: #4a1d35;
+  --title: #d63384;
+  --accent: #ec4899;
+  --accent-hover: #db2777;
+  --border: #ffc0d9;
+  --subtitle: #9d5a78;
+  --input-bg: #ffffff;
+}
+
+/* Светлый фиолетовый */
+body[data-color="purple"] {
+  --bg-start: #ede9fe;
+  --bg-end: #c4b5fd;
+  --text: #32185c;
+  --title: #7c3aed;
+  --accent: #8b5cf6;
+  --accent-hover: #6d28d9;
+  --border: #d8b4fe;
+  --subtitle: #76569b;
+}
+
+/* Светлый зелёный */
+body[data-color="green"] {
+  --bg-start: #dcfce7;
+  --bg-end: #86efac;
+  --text: #153b29;
+  --title: #15803d;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --border: #86efac;
+  --subtitle: #4b8060;
+}
+
+/* Светлый чёрно-серый */
+body[data-color="gray"] {
+  --bg-start: #e5e7eb;
+  --bg-end: #9ca3af;
+  --text: #1f2937;
+  --title: #374151;
+  --accent: #4b5563;
+  --accent-hover: #1f2937;
+  --border: #cbd5e1;
+  --subtitle: #64748b;
+}
+
+/* Тёмная розовая */
+body[data-theme="dark"] {
+  --bg-start: #2b1021;
+  --bg-end: #4a1837;
+  --card-bg: #3b1930;
+  --text: #ffe4f0;
+  --title: #ff9bc5;
+  --accent: #db2777;
+  --accent-hover: #f472b6;
+  --border: #f472a5;
+  --subtitle: #ffc3dc;
+  --input-bg: #2b1021;
+}
+
+/* Тёмный фиолетовый */
+body[data-theme="dark"][data-color="purple"] {
+  --bg-start: #1f1238;
+  --bg-end: #3b1d63;
+  --card-bg: #2d1b4e;
+  --text: #f3e8ff;
+  --title: #d8b4fe;
+  --accent: #a855f7;
+  --accent-hover: #c084fc;
+  --border: #a855f7;
+  --subtitle: #e9d5ff;
+  --input-bg: #1f1238;
+}
+
+/* Тёмный зелёный */
+body[data-theme="dark"][data-color="green"] {
+  --bg-start: #102b1c;
+  --bg-end: #1a4b30;
+  --card-bg: #173b28;
+  --text: #dcfce7;
+  --title: #86efac;
+  --accent: #22c55e;
+  --accent-hover: #4ade80;
+  --border: #4ade80;
+  --subtitle: #bbf7d0;
+  --input-bg: #102b1c;
+}
+
+/* Тёмный чёрно-серый */
+body[data-theme="dark"][data-color="gray"] {
+  --bg-start: #111827;
+  --bg-end: #374151;
+  --card-bg: #1f2937;
+  --text: #f3f4f6;
+  --title: #e5e7eb;
+  --accent: #6b7280;
+  --accent-hover: #9ca3af;
+  --border: #6b7280;
+  --subtitle: #d1d5db;
+  --input-bg: #111827;
+}
+
+/* Применяем выбранные цвета */
+body {
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.card,
+.settings-panel {
+  background: var(--card-bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+h1,
+h2,
+#factText,
+#formStatus,
+.settings-panel h3 {
+  color: var(--title);
+}
+
+.subtitle {
+  color: var(--subtitle);
+}
+
+.photo {
+  border-color: var(--accent);
+}
+
+.links a,
+button {
+  background: var(--accent);
+}
+
+.links a:hover,
+button:hover {
+  background: var(--accent-hover);
+}
+
+#anonymousMessage {
+  color: var(--text);
+  background: var(--input-bg);
+  border-color: var(--border);
+}
+
+.settings-button {
+  background: var(--card-bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.color-choice {
+  background: #ec4899;
+}
+
+.color-choice.purple {
+  background: #8b5cf6;
+}
+
+.color-choice.green {
+  background: #22c55e;
+}
+
+.color-choice.gray {
+  background: #4b5563;
+}
