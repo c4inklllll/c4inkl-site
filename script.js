@@ -1,68 +1,6 @@
-// ===============================
-// ФАКТ ОБО МНЕ
-// ===============================
-
-const factButton = document.getElementById("factButton");
-const factText = document.getElementById("factText");
-
-if (factButton && factText) {
-  factButton.addEventListener("click", () => {
-    factText.textContent =
-      "💗 Я учусь создавать сайты, и это моя первая работа!";
-  });
-}
-
-
-// ===============================
-// АНОНИМНЫЕ СООБЩЕНИЯ
-// ===============================
-
-const messageForm = document.getElementById("messageForm");
-const messageInput = document.getElementById("anonymousMessage");
-const formStatus = document.getElementById("formStatus");
-
-if (messageForm && messageInput && formStatus) {
-  messageForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const message = messageInput.value.trim();
-
-    if (!message) {
-      formStatus.textContent = "❌ Напиши сообщение!";
-      return;
-    }
-
-    formStatus.textContent = "Отправляем...";
-
-    try {
-      const response = await fetch("/api/send-message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ message })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error);
-      }
-
-      formStatus.textContent = "✅ Сообщение отправлено!";
-      messageInput.value = "";
-
-    } catch {
-      formStatus.textContent =
-        "❌ Не удалось отправить. Попробуй ещё раз.";
-    }
-  });
-}
-
-
-// ===============================
-// ⚙️ НАСТРОЙКИ
-// ===============================
+// ==========================================
+// ⚙️ НАСТРОЙКИ САЙТА
+// ==========================================
 
 const settingsButton = document.getElementById("settingsButton");
 const settingsPanel = document.getElementById("settingsPanel");
@@ -71,135 +9,304 @@ const themeButtons = document.querySelectorAll(".theme-choice");
 const colorButtons = document.querySelectorAll(".color-choice");
 
 
-// ===============================
-// ОТКРЫТЬ / ЗАКРЫТЬ НАСТРОЙКИ
-// ===============================
+// ==========================================
+// ОТКРЫТИЕ ШЕСТЕРЁНКИ
+// ==========================================
 
-if (settingsButton && settingsPanel) {
+settingsButton.addEventListener("click", function (event) {
 
-  settingsButton.addEventListener("click", (event) => {
     event.stopPropagation();
 
     settingsPanel.classList.toggle("is-open");
-  });
+
+});
 
 
-  // Закрываем настройки, если кликнули вне окна
-  document.addEventListener("click", (event) => {
+// ==========================================
+// ЗАКРЫТЬ НАСТРОЙКИ ПРИ КЛИКЕ СНАРУЖИ
+// ==========================================
+
+document.addEventListener("click", function (event) {
 
     if (
-      !settingsPanel.contains(event.target) &&
-      !settingsButton.contains(event.target)
+        !settingsPanel.contains(event.target) &&
+        !settingsButton.contains(event.target)
     ) {
-      settingsPanel.classList.remove("is-open");
+
+        settingsPanel.classList.remove("is-open");
+
     }
 
-  });
-}
+});
 
 
-// ===============================
-// ТЕМА
-// ===============================
+// ==========================================
+// ИЗМЕНЕНИЕ ТЕМЫ
+// ==========================================
 
-function setTheme(theme) {
+function changeTheme(theme) {
 
-  if (theme === "dark") {
-    document.body.setAttribute("data-theme", "dark");
-  } else {
-    document.body.removeAttribute("data-theme");
-  }
+    if (theme === "dark") {
+
+        document.body.setAttribute(
+            "data-theme",
+            "dark"
+        );
+
+    } else {
+
+        document.body.removeAttribute(
+            "data-theme"
+        );
+
+    }
 
 
-  // Обновляем активную кнопку
-  themeButtons.forEach((button) => {
+    // Активная кнопка
 
-    button.classList.toggle(
-      "active",
-      button.dataset.mode === theme
+    themeButtons.forEach(function (button) {
+
+        if (button.dataset.mode === theme) {
+
+            button.classList.add("active");
+
+        } else {
+
+            button.classList.remove("active");
+
+        }
+
+    });
+
+
+    // Сохраняем
+
+    localStorage.setItem(
+        "siteTheme",
+        theme
     );
 
-  });
-
-
-  // Сохраняем настройку
-  localStorage.setItem("siteTheme", theme);
 }
 
 
-// ===============================
-// ЦВЕТ
-// ===============================
+// ==========================================
+// ИЗМЕНЕНИЕ ЦВЕТА
+// ==========================================
 
-function setColor(color) {
+function changeColor(color) {
 
-  if (color === "pink") {
-    document.body.removeAttribute("data-color");
-  } else {
-    document.body.setAttribute("data-color", color);
-  }
+    if (color === "pink") {
+
+        document.body.removeAttribute(
+            "data-color"
+        );
+
+    } else {
+
+        document.body.setAttribute(
+            "data-color",
+            color
+        );
+
+    }
 
 
-  // Обновляем активную кнопку
-  colorButtons.forEach((button) => {
+    // Активная кнопка
 
-    button.classList.toggle(
-      "active",
-      button.dataset.color === color
+    colorButtons.forEach(function (button) {
+
+        if (button.dataset.color === color) {
+
+            button.classList.add("active");
+
+        } else {
+
+            button.classList.remove("active");
+
+        }
+
+    });
+
+
+    // Сохраняем
+
+    localStorage.setItem(
+        "siteColor",
+        color
     );
 
-  });
-
-
-  // Сохраняем настройку
-  localStorage.setItem("siteColor", color);
 }
 
 
-// ===============================
+// ==========================================
 // КНОПКИ ТЕМЫ
-// ===============================
+// ==========================================
 
-themeButtons.forEach((button) => {
+themeButtons.forEach(function (button) {
 
-  button.addEventListener("click", () => {
+    button.addEventListener("click", function () {
 
-    const theme = button.dataset.mode;
+        const theme = button.dataset.mode;
 
-    setTheme(theme);
+        changeTheme(theme);
 
-  });
+    });
 
 });
 
 
-// ===============================
+// ==========================================
 // КНОПКИ ЦВЕТА
-// ===============================
+// ==========================================
 
-colorButtons.forEach((button) => {
+colorButtons.forEach(function (button) {
 
-  button.addEventListener("click", () => {
+    button.addEventListener("click", function () {
 
-    const color = button.dataset.color;
+        const color = button.dataset.color;
 
-    setColor(color);
+        changeColor(color);
 
-  });
+    });
 
 });
 
 
-// ===============================
+// ==========================================
 // ЗАГРУЗКА СОХРАНЁННЫХ НАСТРОЕК
-// ===============================
+// ==========================================
 
 const savedTheme =
-  localStorage.getItem("siteTheme") || "light";
+    localStorage.getItem("siteTheme") || "light";
 
 const savedColor =
-  localStorage.getItem("siteColor") || "pink";
+    localStorage.getItem("siteColor") || "pink";
 
 
-setTheme(savedTheme);
-setColor(savedColor);
+changeTheme(savedTheme);
+
+changeColor(savedColor);
+
+
+
+// ==========================================
+// ✨ ФАКТ ОБО МНЕ
+// ==========================================
+
+const factButton =
+    document.getElementById("factButton");
+
+const factText =
+    document.getElementById("factText");
+
+
+if (factButton && factText) {
+
+    factButton.addEventListener(
+        "click",
+        function () {
+
+            factText.textContent =
+                "💗 Я учусь создавать сайты, и это моя первая работа!";
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// 💌 АНОНИМНЫЕ СООБЩЕНИЯ
+// ==========================================
+
+const messageForm =
+    document.getElementById("messageForm");
+
+const messageInput =
+    document.getElementById("anonymousMessage");
+
+const formStatus =
+    document.getElementById("formStatus");
+
+
+if (
+    messageForm &&
+    messageInput &&
+    formStatus
+) {
+
+    messageForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            const message =
+                messageInput.value.trim();
+
+
+            if (!message) {
+
+                formStatus.textContent =
+                    "❌ Напиши сообщение!";
+
+                return;
+
+            }
+
+
+            formStatus.textContent =
+                "Отправляем...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/send-message",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    message: message
+                                })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.error
+                    );
+
+                }
+
+
+                formStatus.textContent =
+                    "✅ Сообщение отправлено!";
+
+                messageInput.value = "";
+
+
+            } catch (error) {
+
+                formStatus.textContent =
+                    "❌ Не удалось отправить. Попробуй ещё раз.";
+
+            }
+
+        }
+    );
+
+}
