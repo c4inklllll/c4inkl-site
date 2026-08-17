@@ -159,19 +159,44 @@
 
   <span id="trackDuration">0:00</span>
 
-  <button id="volumeTrack" class="volume-track" type="button">
-    🔈
-</button>
+  <div class="volume-control">
 
-<input
-    id="volumeProgress"
-    class="volume-progress"
-    type="range"
-    min="1"
-    max="100"
-    value="100"
-    title="Громкость"
->
+    <div class="volume-popup">
+        <input
+            id="volumeProgress"
+            class="volume-progress"
+            type="range"
+            min="1"
+            max="100"
+            value="100"
+            title="Громкость"
+        >
+        <span id="volumeValue">100</span>
+    </div>
+
+    <button
+        id="volumeTrack"
+        class="volume-track"
+        type="button"
+        aria-label="Громкость"
+    >
+        <svg
+            viewBox="0 0 24 24"
+            width="21"
+            height="21"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+            <path d="M19 5a10 10 0 0 1 0 14"></path>
+        </svg>
+    </button>
+
+</div>
 
 </div>
 
