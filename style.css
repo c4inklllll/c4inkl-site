@@ -1493,3 +1493,6 @@ textarea {
     }
 
 }
+.track-card {
+    transform: translateY(-35px);
+}
