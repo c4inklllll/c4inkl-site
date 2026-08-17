@@ -1456,3 +1456,40 @@ textarea {
 #volumeValue {
     display: none;
 }
+/* ===== MY FAV TRACK — ПО ЦЕНТРУ ===== */
+
+.my-fav-track-title {
+    text-align: center;
+}
+
+
+/* ===== ПЛАШКА ПЛЕЕРА — ПУЛЬСИРУЮЩЕЕ СВЕЧЕНИЕ ===== */
+
+.track-card {
+    animation: trackGlow 4s ease-in-out infinite;
+}
+
+
+/* Плавная пульсация свечения */
+
+@keyframes trackGlow {
+
+    0% {
+        box-shadow:
+            0 0 10px rgba(168, 85, 247, 0.20),
+            0 0 20px rgba(168, 85, 247, 0.10);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(168, 85, 247, 0.40),
+            0 0 35px rgba(168, 85, 247, 0.20);
+    }
+
+    100% {
+        box-shadow:
+            0 0 10px rgba(168, 85, 247, 0.20),
+            0 0 20px rgba(168, 85, 247, 0.10);
+    }
+
+}
