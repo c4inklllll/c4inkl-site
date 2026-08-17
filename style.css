@@ -1137,3 +1137,53 @@ textarea {
         min-width: 28px;
     }
 }ы
+/* 🔊 ГРОМКОСТЬ */
+
+.volume-progress {
+    width: 80px;
+    height: 5px;
+
+    appearance: none;
+
+    border-radius: 10px;
+
+    background: var(--border);
+
+    cursor: pointer;
+}
+
+.volume-progress::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    cursor: pointer;
+}
+
+.volume-progress::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    cursor: pointer;
+}
+
+.volume-track {
+    font-size: 18px;
+}
+
+@media (max-width: 600px) {
+
+    .volume-progress {
+        width: 55px;
+    }
+}
