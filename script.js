@@ -349,6 +349,7 @@ const trackProgress = document.getElementById("trackProgress");
 const trackTime = document.getElementById("trackTime");
 const trackDuration = document.getElementById("trackDuration");
 const volumeTrack = document.getElementById("volumeTrack");
+const volumeProgress = document.getElementById("volumeProgress");
 
 function formatTime(seconds) {
     if (!isFinite(seconds)) return "0:00";
@@ -423,22 +424,47 @@ trackProgress.addEventListener("input", () => {
 
 // 🔊 ГРОМКОСТЬ
 
+// 🔊 ГРОМКОСТЬ 1–100
+
+volumeProgress.addEventListener("input", () => {
+
+    const volume = Number(volumeProgress.value);
+
+    favoriteTrack.volume = volume / 100;
+
+    favoriteTrack.muted = false;
+
+    if (volume <= 1) {
+        volumeTrack.textContent = "🔇";
+    } else if (volume <= 50) {
+        volumeTrack.textContent = "🔈";
+    } else {
+        volumeTrack.textContent = "🔊";
+    }
+
+});
+
+
+// 🔇 КНОПКА ОТКЛЮЧЕНИЯ ЗВУКА
+
 volumeTrack.addEventListener("click", () => {
 
     if (favoriteTrack.muted) {
 
         favoriteTrack.muted = false;
-        volumeTrack.textContent = "🔊";
+
+        volumeTrack.textContent =
+            volumeProgress.value <= 50 ? "🔈" : "🔊";
 
     } else {
 
         favoriteTrack.muted = true;
+
         volumeTrack.textContent = "🔇";
 
     }
 
 });
-
 
 // 🎵 ТРЕК ЗАКОНЧИЛСЯ
 
