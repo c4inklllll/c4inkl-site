@@ -279,3 +279,65 @@ const savedColor =
 
 changeTheme(savedTheme);
 changeColor(savedColor);
+// ==========================================
+// 🔤 ШРИФТ
+// ==========================================
+
+const fontButtons =
+    document.querySelectorAll(".font-choice");
+
+
+function changeFont(font) {
+
+    document.body.style.fontFamily = font;
+
+
+    // Обновляем активную кнопку
+
+    fontButtons.forEach(function (button) {
+
+        if (button.dataset.font === font) {
+
+            button.classList.add("active");
+
+        } else {
+
+            button.classList.remove("active");
+
+        }
+
+    });
+
+
+    // Сохраняем
+
+    localStorage.setItem(
+        "siteFont",
+        font
+    );
+
+}
+
+
+// Кнопки шрифтов
+
+fontButtons.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        changeFont(
+            button.dataset.font
+        );
+
+    });
+
+});
+
+
+// Загружаем сохранённый шрифт
+
+const savedFont =
+    localStorage.getItem("siteFont") || "Arial";
+
+
+changeFont(savedFont);
