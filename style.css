@@ -1187,3 +1187,111 @@ textarea {
         width: 55px;
     }
 }
+/* ===== НОВАЯ ГРОМКОСТЬ ===== */
+
+.volume-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.volume-track {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.volume-track:hover {
+    color: var(--accent);
+    background: var(--input-bg);
+}
+
+.volume-popup {
+    position: absolute;
+    right: 0;
+    bottom: 48px;
+
+    width: 48px;
+    height: 145px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px var(--shadow);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(8px) scale(.95);
+
+    transition: .2s ease;
+
+    z-index: 20;
+}
+
+.volume-control:hover .volume-popup,
+.volume-popup:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.volume-progress {
+    width: 100px;
+    height: 5px;
+
+    appearance: none;
+
+    transform: rotate(-90deg);
+
+    background: var(--border);
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.volume-progress::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    cursor: pointer;
+}
+
+.volume-progress::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    cursor: pointer;
+}
+
+#volumeValue {
+    color: var(--subtitle);
+    font-size: 11px;
+    font-weight: 600;
+}
