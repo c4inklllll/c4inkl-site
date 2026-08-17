@@ -422,25 +422,27 @@ trackProgress.addEventListener("input", () => {
 });
 
 
-// 🔊 ГРОМКОСТЬ
-
 // 🔊 ГРОМКОСТЬ 1–100
+
+const volumeValue = document.getElementById("volumeValue");
 
 volumeProgress.addEventListener("input", () => {
 
     const volume = Number(volumeProgress.value);
 
     favoriteTrack.volume = volume / 100;
-
     favoriteTrack.muted = false;
 
-    if (volume <= 1) {
-        volumeTrack.textContent = "🔇";
-    } else if (volume <= 50) {
-        volumeTrack.textContent = "🔈";
-    } else {
-        volumeTrack.textContent = "🔊";
-    }
+    volumeValue.textContent = volume;
+
+});
+
+
+// 🔇 ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ ЗВУК
+
+volumeTrack.addEventListener("click", () => {
+
+    favoriteTrack.muted = !favoriteTrack.muted;
 
 });
 
