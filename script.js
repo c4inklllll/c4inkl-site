@@ -1,5 +1,8 @@
-document.getElementById("helloButton").addEventListener("click", () => {
-  alert("Спасибо, что заглянули на мой сайт!");
+const factButton = document.getElementById("factButton");
+const factText = document.getElementById("factText");
+
+factButton.addEventListener("click", () => {
+  factText.textContent = "💗 Я учусь создавать сайты, и это моя первая работа!";
 });
 
 const themeButton = document.getElementById("themeButton");
