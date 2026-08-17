@@ -1,5 +1,3 @@
-// ===== Настройки темы и цвета =====
-
 const settingsButton = document.getElementById("settingsButton");
 const settingsPanel = document.getElementById("settingsPanel");
 const themeChoices = document.querySelectorAll(".theme-choice");
@@ -12,21 +10,12 @@ function applySettings() {
   document.body.dataset.theme = selectedTheme;
   document.body.dataset.color = selectedColor;
 
-  // Убираем старый класс темы, если он остался от прошлого варианта сайта.
-  document.body.classList.remove("dark-theme");
-
   themeChoices.forEach((button) => {
-    button.classList.toggle(
-      "active",
-      button.dataset.mode === selectedTheme
-    );
+    button.classList.toggle("active", button.dataset.mode === selectedTheme);
   });
 
   colorChoices.forEach((button) => {
-    button.classList.toggle(
-      "active",
-      button.dataset.color === selectedColor
-    );
+    button.classList.toggle("active", button.dataset.color === selectedColor);
   });
 
   localStorage.setItem("siteTheme", selectedTheme);
@@ -62,8 +51,6 @@ colorChoices.forEach((button) => {
 
 applySettings();
 
-// ===== Кнопка «Факт обо мне» =====
-
 const factButton = document.getElementById("factButton");
 const factText = document.getElementById("factText");
 
@@ -73,8 +60,6 @@ if (factButton && factText) {
       "💗 Я учусь создавать сайты, и это моя первая работа!";
   });
 }
-
-// ===== Анонимные сообщения в Telegram =====
 
 const messageForm = document.getElementById("messageForm");
 const messageInput = document.getElementById("anonymousMessage");
@@ -90,9 +75,7 @@ if (messageForm && messageInput && formStatus) {
     try {
       const response = await fetch("/api/send-message", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message })
       });
 
@@ -104,7 +87,7 @@ if (messageForm && messageInput && formStatus) {
 
       formStatus.textContent = "✅ Сообщение отправлено!";
       messageInput.value = "";
-    } catch (error) {
+    } catch {
       formStatus.textContent =
         "❌ Не удалось отправить. Попробуй ещё раз.";
     }
