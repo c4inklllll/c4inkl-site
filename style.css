@@ -27,6 +27,268 @@ body {
   width: 150px;
   height: 150px;
   object-fit: cover;
+  /* ===== Панель настроек и цветовые темы ===== */
+
+:root {
+  --bg-start: #ffd6e7;
+  --bg-end: #f9c5d8;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --text: #4a1d35;
+  --title: #d63384;
+  --accent: #ec4899;
+  --accent-hover: #db2777;
+  --border: #ffc0d9;
+  --subtitle: #9d5a78;
+  --input-bg: #ffffff;
+  --shadow: rgba(211, 86, 137, 0.25);
+}
+
+/* Фиолетовая схема */
+body[data-color="purple"] {
+  --bg-start: #e9d5ff;
+  --bg-end: #c4b5fd;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --text: #32185c;
+  --title: #7c3aed;
+  --accent: #8b5cf6;
+  --accent-hover: #6d28d9;
+  --border: #d8b4fe;
+  --subtitle: #76569b;
+  --input-bg: #ffffff;
+  --shadow: rgba(124, 58, 237, 0.25);
+}
+
+/* Зелёная схема */
+body[data-color="green"] {
+  --bg-start: #bbf7d0;
+  --bg-end: #86efac;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --text: #153b29;
+  --title: #15803d;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --border: #86efac;
+  --subtitle: #4b8060;
+  --input-bg: #ffffff;
+  --shadow: rgba(34, 197, 94, 0.25);
+}
+
+/* Чёрно-серая схема */
+body[data-color="gray"] {
+  --bg-start: #d1d5db;
+  --bg-end: #9ca3af;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --text: #1f2937;
+  --title: #374151;
+  --accent: #4b5563;
+  --accent-hover: #1f2937;
+  --border: #cbd5e1;
+  --subtitle: #64748b;
+  --input-bg: #ffffff;
+  --shadow: rgba(31, 41, 55, 0.25);
+}
+
+/* Тёмная тема: розовая по умолчанию */
+body[data-theme="dark"] {
+  --bg-start: #2b1021;
+  --bg-end: #4a1837;
+  --card-bg: #3b1930;
+  --text: #ffe4f0;
+  --title: #ff9bc5;
+  --accent: #db2777;
+  --accent-hover: #f472b6;
+  --border: #f472a5;
+  --subtitle: #ffc3dc;
+  --input-bg: #2b1021;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+/* Тёмные варианты цветов */
+body[data-theme="dark"][data-color="purple"] {
+  --bg-start: #1f1238;
+  --bg-end: #3b1d63;
+  --card-bg: #2d1b4e;
+  --text: #f3e8ff;
+  --title: #d8b4fe;
+  --accent: #a855f7;
+  --accent-hover: #c084fc;
+  --border: #a855f7;
+  --subtitle: #e9d5ff;
+  --input-bg: #1f1238;
+}
+
+body[data-theme="dark"][data-color="green"] {
+  --bg-start: #102b1c;
+  --bg-end: #1a4b30;
+  --card-bg: #173b28;
+  --text: #dcfce7;
+  --title: #86efac;
+  --accent: #22c55e;
+  --accent-hover: #4ade80;
+  --border: #4ade80;
+  --subtitle: #bbf7d0;
+  --input-bg: #102b1c;
+}
+
+body[data-theme="dark"][data-color="gray"] {
+  --bg-start: #111827;
+  --bg-end: #374151;
+  --card-bg: #1f2937;
+  --text: #f3f4f6;
+  --title: #e5e7eb;
+  --accent: #6b7280;
+  --accent-hover: #9ca3af;
+  --border: #6b7280;
+  --subtitle: #d1d5db;
+  --input-bg: #111827;
+}
+
+/* Применяем выбранные цвета к сайту */
+body {
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.card {
+  background: var(--card-bg);
+  border-color: var(--border);
+  box-shadow: 0 20px 50px var(--shadow);
+}
+
+h1,
+h2,
+#factText,
+#formStatus {
+  color: var(--title);
+}
+
+.subtitle {
+  color: var(--subtitle);
+}
+
+.photo {
+  border-color: var(--accent);
+}
+
+.links a,
+button {
+  background: var(--accent);
+}
+
+.links a:hover,
+button:hover {
+  background: var(--accent-hover);
+}
+
+#anonymousMessage {
+  color: var(--text);
+  background: var(--input-bg);
+  border-color: var(--border);
+}
+
+#anonymousMessage:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* Шестерёнка */
+.settings-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 25px;
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.settings-button:hover {
+  background: var(--card-bg);
+  transform: rotate(45deg) scale(1.08);
+}
+
+/* Окно настроек */
+.settings-panel {
+  position: fixed;
+  top: 84px;
+  right: 20px;
+  z-index: 10;
+  display: none;
+  width: min(310px, calc(100% - 40px));
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  background: var(--card-bg);
+  color: var(--text);
+  box-shadow: 0 14px 35px var(--shadow);
+}
+
+.settings-panel.is-open {
+  display: block;
+  animation: panel-show 0.2s ease-out;
+}
+
+.settings-panel h3 {
+  margin: 0 0 16px;
+  color: var(--title);
+}
+
+.settings-panel p {
+  margin: 16px 0 8px;
+  font-weight: bold;
+}
+
+.settings-row {
+  display: flex;
+  gap: 8px;
+}
+
+.theme-choice {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.theme-choice.active {
+  outline: 3px solid color-mix(in srgb, var(--accent) 40%, white);
+}
+
+.color-choices {
+  display: flex;
+  gap: 13px;
+}
+
+.color-choice {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  background: #ec4899;
+}
+
+.color-choice.purple {
+  background: #8b5cf6;
+}
+
+.color-choice.green {
+  background: #22c55e;
+}
+
+.color-choice.gray {
+  background: #4b5563;
+}
+
+.color-choice.active {
+  border-color: var(--text);
+  transform: scale(1.13);
+}
   border: 5px solid #f472a5;
   border-radius: 50%;
 }
