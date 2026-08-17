@@ -1031,3 +1031,109 @@ textarea {
 .track-card:hover .track-cover img {
     transform: scale(1.08);
 }
+/* 🎵 КАСТОМНЫЙ ПЛЕЕР */
+
+.custom-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    width: 100%;
+}
+
+.play-track,
+.volume-track {
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+    color: white;
+
+    font-size: 17px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.play-track:hover,
+.volume-track:hover {
+    background: var(--accent-hover);
+    transform: scale(1.08);
+}
+
+#trackTime,
+#trackDuration {
+    color: var(--text);
+    font-size: 13px;
+    min-width: 32px;
+}
+
+.track-progress {
+    flex: 1;
+    height: 5px;
+
+    appearance: none;
+
+    border-radius: 10px;
+
+    background: var(--border);
+
+    cursor: pointer;
+}
+
+/* Ползунок */
+
+.track-progress::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    cursor: pointer;
+}
+
+.track-progress::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+
+    .custom-player {
+        gap: 6px;
+    }
+
+    .play-track,
+    .volume-track {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    #trackTime,
+    #trackDuration {
+        font-size: 11px;
+        min-width: 28px;
+    }
+}ы
