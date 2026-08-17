@@ -1,76 +1,188 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>c4inkl info</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- ⚙️ ШЕСТЕРЁНКА -->
+  <button
+    class="settings-button"
+    id="settingsButton"
+    aria-label="Открыть настройки"
+    type="button"
+  >
+    ⚙️
+  </button>
+
+
+  <!-- ⚙️ ОКНО НАСТРОЕК -->
+  <div class="settings-panel" id="settingsPanel">
+
+    <h3>⚙️ Настройки</h3>
+
+    <p>Тема</p>
+
+    <div class="settings-row">
+
+      <button
+        class="theme-choice active"
+        data-mode="light"
+        type="button"
+      >
+        ☀️ Светлая
+      </button>
+
+      <button
+        class="theme-choice"
+        data-mode="dark"
+        type="button"
+      >
+        🌙 Тёмная
+      </button>
+
+    </div>
+
+
+    <p>Цвет</p>
+
+    <div class="color-choices">
+
+      <button
+        class="color-choice active"
+        data-color="pink"
+        title="Розовый"
+        type="button"
+      ></button>
+
+      <button
+        class="color-choice purple"
+        data-color="purple"
+        title="Фиолетовый"
+        type="button"
+      ></button>
+
+      <button
+        class="color-choice green"
+        data-color="green"
+        title="Зелёный"
+        type="button"
+      ></button>
+
+      <button
+        class="color-choice gray"
+        data-color="gray"
+        title="Серый"
+        type="button"
+      ></button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ОСНОВНОЙ САЙТ -->
   <main class="card">
-    <img class="photo" src="photo.jpg" alt="Фотография [Твоё имя]">
+
+    <img
+      class="photo"
+      src="photo.jpg"
+      alt="Фотография"
+    >
+
 
     <h1>Привет, я c4inkl!</h1>
-    <p class="subtitle">Начинающий программист и создатель этого сайта.</p>
+
+    <p class="subtitle">
+      Начинающий программист и создатель этого сайта.
+    </p>
+
 
     <h2>Обо мне</h2>
+
     <p>
       Люблю играть контру, смотреть анимешки и каваишитьсяXD
     </p>
 
+
     <h2>Мои интересы</h2>
+
     <ul>
       <li>💻 Программирование</li>
       <li>🎮 Игры</li>
       <li>🎵 Музыка</li>
     </ul>
 
+
     <h2>Найти меня</h2>
+
     <div class="links">
-      <a href="https://t.me/plohoypareennn" target="_blank">Telegram</a>
-      <a href="https://youtube.com/ТВОЙ_НИК" target="_blank">YouTube</a>
-      <a href="https://instagram.com/c4inkl" target="_blank">Instagram</a>
+
+      <a
+        href="https://t.me/plohoypareennn"
+        target="_blank"
+      >
+        Telegram
+      </a>
+
+      <a
+        href="https://youtube.com/ТВОЙ_НИК"
+        target="_blank"
+      >
+        YouTube
+      </a>
+
+      <a
+        href="https://instagram.com/c4inkl"
+        target="_blank"
+      >
+        Instagram
+      </a>
+
     </div>
+
+
     <h2>Написать мне анонимно</h2>
 
-<form id="messageForm">
-  <textarea
-    id="anonymousMessage"
-    placeholder="Напиши сообщение..."
-    maxlength="1000"
-    required
-  ></textarea>
+    <form id="messageForm">
 
-  <button type="submit">✉️ Отправить анонимно</button>
+      <textarea
+        id="anonymousMessage"
+        placeholder="Напиши сообщение..."
+        maxlength="1000"
+        required
+      ></textarea>
 
-  <p id="formStatus"></p>
-</form>
+      <button type="submit">
+        ✉️ Отправить анонимно
+      </button>
 
-    <button id="factButton">✨ Узнать факт обо мне</button>
-<p id="factText"></p>
+      <p id="formStatus"></p>
+
+    </form>
+
+
+    <button
+      id="factButton"
+      type="button"
+    >
+      ✨ Узнать факт обо мне
+    </button>
+
+    <p id="factText"></p>
+
   </main>
 
+
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
+
 </body>
-  <button class="settings-button" id="settingsButton" aria-label="Открыть настройки">
-  ⚙️
-</button>
-
-<div class="settings-panel" id="settingsPanel">
-  <h3>Настройки</h3>
-
-  <p>Тема</p>
-  <div class="settings-row">
-    <button class="theme-choice active" data-mode="light">☀️ Светлая</button>
-    <button class="theme-choice" data-mode="dark">🌙 Тёмная</button>
-  </div>
-
-  <p>Цвет</p>
-  <div class="color-choices">
-    <button class="color-choice active" data-color="pink" title="Розовый"></button>
-    <button class="color-choice purple" data-color="purple" title="Фиолетовый"></button>
-    <button class="color-choice green" data-color="green" title="Зелёный"></button>
-    <button class="color-choice gray" data-color="gray" title="Чёрно-серый"></button>
-  </div>
-</div>
 </html>
