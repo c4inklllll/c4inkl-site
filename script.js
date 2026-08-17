@@ -341,3 +341,111 @@ const savedFont =
 
 
 changeFont(savedFont);
+// 🎵 КАСТОМНЫЙ ПЛЕЕР
+
+const favoriteTrack = document.getElementById("favoriteTrack");
+const playTrack = document.getElementById("playTrack");
+const trackProgress = document.getElementById("trackProgress");
+const trackTime = document.getElementById("trackTime");
+const trackDuration = document.getElementById("trackDuration");
+const volumeTrack = document.getElementById("volumeTrack");
+
+function formatTime(seconds) {
+    if (!isFinite(seconds)) return "0:00";
+
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+
+    return minutes + ":" + String(secs).padStart(2, "0");
+}
+
+
+// ▶ PLAY / PAUSE
+
+playTrack.addEventListener("click", () => {
+
+    if (favoriteTrack.paused) {
+        favoriteTrack.play();
+
+        playTrack.textContent = "❚❚";
+    } else {
+        favoriteTrack.pause();
+
+        playTrack.textContent = "▶";
+    }
+
+});
+
+
+// ⏱ ДЛИТЕЛЬНОСТЬ
+
+favoriteTrack.addEventListener("loadedmetadata", () => {
+
+    trackDuration.textContent =
+        formatTime(favoriteTrack.duration);
+
+});
+
+
+// 📊 ПРОГРЕСС
+
+favoriteTrack.addEventListener("timeupdate", () => {
+
+    if (favoriteTrack.duration) {
+
+        const progress =
+            (favoriteTrack.currentTime /
+            favoriteTrack.duration) * 100;
+
+        trackProgress.value = progress;
+
+        trackTime.textContent =
+            formatTime(favoriteTrack.currentTime);
+    }
+
+});
+
+
+// 🎚 ПЕРЕМЕЩЕНИЕ ПО ТРЕКУ
+
+trackProgress.addEventListener("input", () => {
+
+    if (favoriteTrack.duration) {
+
+        favoriteTrack.currentTime =
+            (trackProgress.value / 100) *
+            favoriteTrack.duration;
+
+    }
+
+});
+
+
+// 🔊 ГРОМКОСТЬ
+
+volumeTrack.addEventListener("click", () => {
+
+    if (favoriteTrack.muted) {
+
+        favoriteTrack.muted = false;
+        volumeTrack.textContent = "🔊";
+
+    } else {
+
+        favoriteTrack.muted = true;
+        volumeTrack.textContent = "🔇";
+
+    }
+
+});
+
+
+// 🎵 ТРЕК ЗАКОНЧИЛСЯ
+
+favoriteTrack.addEventListener("ended", () => {
+
+    playTrack.textContent = "▶";
+    trackProgress.value = 0;
+    trackTime.textContent = "0:00";
+
+});
