@@ -1,95 +1,48 @@
-const settingsButton = document.getElementById("settingsButton");
-const settingsPanel = document.getElementById("settingsPanel");
-const themeChoices = document.querySelectorAll(".theme-choice");
-const colorChoices = document.querySelectorAll(".color-choice");
-
-let selectedTheme = localStorage.getItem("siteTheme") || "light";
-let selectedColor = localStorage.getItem("siteColor") || "pink";
-
-function applySettings() {
-  document.body.dataset.theme = selectedTheme;
-  document.body.dataset.color = selectedColor;
-
-  themeChoices.forEach((button) => {
-    button.classList.toggle("active", button.dataset.mode === selectedTheme);
-  });
-
-  colorChoices.forEach((button) => {
-    button.classList.toggle("active", button.dataset.color === selectedColor);
-  });
-
-  localStorage.setItem("siteTheme", selectedTheme);
-  localStorage.setItem("siteColor", selectedColor);
-}
-
-settingsButton.addEventListener("click", (event) => {
-  event.stopPropagation();
-  settingsPanel.classList.toggle("is-open");
+document.getElementById("helloButton").addEventListener("click", () => {
+  alert("Спасибо, что заглянули на мой сайт!");
 });
 
-settingsPanel.addEventListener("click", (event) => {
-  event.stopPropagation();
+const themeButton = document.getElementById("themeButton");
+
+themeButton.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    themeButton.textContent = "☀️ Светлая тема";
+  } else {
+    themeButton.textContent = "🌙 Тёмная тема";
+  }
 });
-
-document.addEventListener("click", () => {
-  settingsPanel.classList.remove("is-open");
-});
-
-themeChoices.forEach((button) => {
-  button.addEventListener("click", () => {
-    selectedTheme = button.dataset.mode;
-    applySettings();
-  });
-});
-
-colorChoices.forEach((button) => {
-  button.addEventListener("click", () => {
-    selectedColor = button.dataset.color;
-    applySettings();
-  });
-});
-
-applySettings();
-
-const factButton = document.getElementById("factButton");
-const factText = document.getElementById("factText");
-
-if (factButton && factText) {
-  factButton.addEventListener("click", () => {
-    factText.textContent =
-      "💗 Я учусь создавать сайты, и это моя первая работа!";
-  });
-}
 
 const messageForm = document.getElementById("messageForm");
 const messageInput = document.getElementById("anonymousMessage");
 const formStatus = document.getElementById("formStatus");
 
-if (messageForm && messageInput && formStatus) {
-  messageForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
+messageForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-    const message = messageInput.value.trim();
-    formStatus.textContent = "Отправляем...";
+  const message = messageInput.value.trim();
 
-    try {
-      const response = await fetch("/api/send-message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message })
-      });
+  formStatus.textContent = "Отправляем...";
 
-      const data = await response.json();
+  try {
+    const response = await fetch("/api/send-message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
 
-      if (!response.ok) {
-        throw new Error(data.error);
-      }
+    const data = await response.json();
 
-      formStatus.textContent = "✅ Сообщение отправлено!";
-      messageInput.value = "";
-    } catch {
-      formStatus.textContent =
-        "❌ Не удалось отправить. Попробуй ещё раз.";
+    if (!response.ok) {
+      throw new Error(data.error);
     }
-  });
-}
+
+    formStatus.textContent = "✅ Сообщение отправлено!";
+    messageInput.value = "";
+  } catch (error) {
+    formStatus.textContent = "❌ Не удалось отправить. Попробуй ещё раз.";
+  }
+});
