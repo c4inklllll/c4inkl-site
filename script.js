@@ -10,7 +10,7 @@ if (factButton && factText) {
     factButton.addEventListener("click", function () {
 
         factText.textContent =
-            "💗 Я учусь создавать сайты, и это моя первая работа!";
+            "16 y.o from KZ";
 
     });
 
