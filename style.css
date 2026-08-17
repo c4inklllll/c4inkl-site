@@ -688,3 +688,177 @@ button:hover {
 .color-choice.gray {
   background: #4b5563;
 }
+/* ==========================================
+   ✨ АНИМАЦИИ САЙТА
+   ========================================== */
+
+
+/* Плавное появление всей карточки */
+
+.card {
+    animation: cardAppear 0.8s ease-out;
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* ==========================================
+   🖼️ АНИМАЦИЯ ФОТО
+   ========================================== */
+
+.photo {
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+.photo:hover {
+    transform: scale(1.08) rotate(3deg);
+    box-shadow: 0 12px 30px var(--shadow);
+}
+
+
+/* ==========================================
+   🔘 АНИМАЦИЯ КНОПОК
+   ========================================== */
+
+button,
+.links a {
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+button:hover,
+.links a:hover {
+    transform: translateY(-3px);
+}
+
+
+button:active,
+.links a:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================
+   ⚙️ АНИМАЦИЯ ШЕСТЕРЁНКИ
+   ========================================== */
+
+.settings-button {
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.settings-button:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+
+.settings-button:active {
+    transform: rotate(180deg) scale(0.95);
+}
+
+
+/* ==========================================
+   ⚙️ ПАНЕЛЬ НАСТРОЕК
+   ========================================== */
+
+.settings-panel {
+    transform-origin: top right;
+}
+
+
+.settings-panel.is-open {
+    animation: settingsOpen 0.25s ease-out;
+}
+
+
+@keyframes settingsOpen {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+
+/* ==========================================
+   🔤 КНОПКИ ШРИФТА
+   ========================================== */
+
+.font-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+
+.font-choice {
+    padding: 9px;
+    font-size: 14px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.font-choice.active {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+
+/* ==========================================
+   🌈 ПЛАВНАЯ СМЕНА ШРИФТА
+   ========================================== */
+
+body {
+    transition:
+        background 0.4s ease,
+        color 0.4s ease;
+}
+
+
+.card,
+.settings-panel,
+h1,
+h2,
+p,
+li,
+button,
+.links a,
+textarea {
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        font-family 0.2s ease;
+}
