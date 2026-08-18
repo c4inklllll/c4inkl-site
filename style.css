@@ -1496,3 +1496,48 @@ textarea {
 .track-card {
     transform: translateY(-15px);
 }
+/* ==========================================
+   🌈 АНИМИРОВАННЫЙ ФОН
+   ========================================== */
+
+body {
+    background:
+        linear-gradient(
+            135deg,
+            var(--bg-start),
+            var(--bg-end),
+            var(--bg-start),
+            var(--bg-end)
+        );
+
+    background-size: 400% 400%;
+
+    animation: animatedBackground 15s ease infinite;
+}
+
+
+/* Плавное движение градиента */
+
+@keyframes animatedBackground {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    75% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
