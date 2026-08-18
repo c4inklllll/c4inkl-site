@@ -1542,78 +1542,89 @@ body {
 
 }
 /* ==========================================
-   ✨ СВЕТЯЩИЕСЯ БЛИКИ НА ФОНЕ
+   ✨ СВЕТЯЩИЕСЯ БЛИКИ
    ========================================== */
 
 body::before,
 body::after {
     content: "";
+
     position: fixed;
 
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
 
     border-radius: 50%;
 
     background: var(--accent);
 
-    opacity: 0.12;
+    opacity: 0.18;
 
-    filter: blur(55px);
+    filter: blur(70px);
 
     pointer-events: none;
 
     z-index: 0;
 
-    animation: floatingGlow 12s ease-in-out infinite;
+    animation: glowMove 10s ease-in-out infinite;
 }
 
 
-/* Первый блик */
+/* Левый верхний блик */
 
 body::before {
-    top: 10%;
-    left: 8%;
+    top: 5%;
+    left: 5%;
 }
 
 
-/* Второй блик */
+/* Правый нижний блик */
 
 body::after {
-    right: 8%;
-    bottom: 10%;
+    right: 5%;
+    bottom: 5%;
 
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
 
-    opacity: 0.10;
+    opacity: 0.15;
 
-    animation-delay: -6s;
+    animation-delay: -5s;
 }
 
 
-/* Плавное движение */
+/* Движение бликов */
 
-@keyframes floatingGlow {
+@keyframes glowMove {
 
     0% {
         transform: translate(0, 0) scale(1);
     }
 
     25% {
-        transform: translate(35px, 20px) scale(1.15);
+        transform: translate(80px, 40px) scale(1.2);
     }
 
     50% {
-        transform: translate(10px, 50px) scale(0.9);
+        transform: translate(30px, 100px) scale(0.9);
     }
 
     75% {
-        transform: translate(-30px, 20px) scale(1.1);
+        transform: translate(-60px, 50px) scale(1.15);
     }
 
     100% {
         transform: translate(0, 0) scale(1);
     }
 
+}
+
+
+/* Контент сайта находится поверх бликов */
+
+.card,
+.settings-button,
+.settings-panel {
+    position: relative;
+    z-index: 1;
 }
