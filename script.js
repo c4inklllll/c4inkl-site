@@ -341,139 +341,321 @@ const savedFont =
 
 
 changeFont(savedFont);
-// 🎵 КАСТОМНЫЙ ПЛЕЕР
+// ==========================================
+// 🎵 КАСТОМНЫЙ ПЛЕЕР + PLAYLIST
+// ==========================================
 
-const favoriteTrack = document.getElementById("favoriteTrack");
-const playTrack = document.getElementById("playTrack");
-const trackProgress = document.getElementById("trackProgress");
-const trackTime = document.getElementById("trackTime");
-const trackDuration = document.getElementById("trackDuration");
-const volumeTrack = document.getElementById("volumeTrack");
-const volumeProgress = document.getElementById("volumeProgress");
+const favoriteTrack =
+    document.getElementById("favoriteTrack");
+
+const playTrack =
+    document.getElementById("playTrack");
+
+const trackProgress =
+    document.getElementById("trackProgress");
+
+const trackTime =
+    document.getElementById("trackTime");
+
+const trackDuration =
+    document.getElementById("trackDuration");
+
+const volumeTrack =
+    document.getElementById("volumeTrack");
+
+const volumeProgress =
+    document.getElementById("volumeProgress");
+
+const volumeValue =
+    document.getElementById("volumeValue");
+
+const currentCover =
+    document.getElementById("currentCover");
+
+const currentTitle =
+    document.getElementById("currentTitle");
+
+const currentArtist =
+    document.getElementById("currentArtist");
+
+const playlistItems =
+    document.querySelectorAll(".playlist-item");
+
+
+// ==========================================
+// ⏱ ВРЕМЯ
+// ==========================================
 
 function formatTime(seconds) {
-    if (!isFinite(seconds)) return "0:00";
 
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
+    if (!isFinite(seconds)) {
+        return "0:00";
+    }
 
-    return minutes + ":" + String(secs).padStart(2, "0");
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const secs =
+        Math.floor(seconds % 60);
+
+    return (
+        minutes +
+        ":" +
+        String(secs).padStart(2, "0")
+    );
 }
 
 
+// ==========================================
 // ▶ PLAY / PAUSE
+// ==========================================
 
-playTrack.addEventListener("click", () => {
+playTrack.addEventListener("click", function () {
 
     if (favoriteTrack.paused) {
+
         favoriteTrack.play();
 
         playTrack.textContent = "❚❚";
+
     } else {
+
         favoriteTrack.pause();
 
         playTrack.textContent = "▶";
+
     }
 
 });
 
 
+// ==========================================
 // ⏱ ДЛИТЕЛЬНОСТЬ
+// ==========================================
 
-favoriteTrack.addEventListener("loadedmetadata", () => {
+favoriteTrack.addEventListener(
+    "loadedmetadata",
+    function () {
 
-    trackDuration.textContent =
-        formatTime(favoriteTrack.duration);
+        trackDuration.textContent =
+            formatTime(
+                favoriteTrack.duration
+            );
 
-});
+    }
+);
 
 
+// ==========================================
 // 📊 ПРОГРЕСС
+// ==========================================
 
-favoriteTrack.addEventListener("timeupdate", () => {
+favoriteTrack.addEventListener(
+    "timeupdate",
+    function () {
 
-    if (favoriteTrack.duration) {
+        if (!favoriteTrack.duration) {
+            return;
+        }
 
         const progress =
-            (favoriteTrack.currentTime /
-            favoriteTrack.duration) * 100;
+            (
+                favoriteTrack.currentTime /
+                favoriteTrack.duration
+            ) * 100;
 
-        trackProgress.value = progress;
+        trackProgress.value =
+            progress;
 
         trackTime.textContent =
-            formatTime(favoriteTrack.currentTime);
+            formatTime(
+                favoriteTrack.currentTime
+            );
+
     }
+);
 
-});
 
+// ==========================================
+// 🎚 ПЕРЕМОТКА
+// ==========================================
 
-// 🎚 ПЕРЕМЕЩЕНИЕ ПО ТРЕКУ
+trackProgress.addEventListener(
+    "input",
+    function () {
 
-trackProgress.addEventListener("input", () => {
-
-    if (favoriteTrack.duration) {
+        if (!favoriteTrack.duration) {
+            return;
+        }
 
         favoriteTrack.currentTime =
-            (trackProgress.value / 100) *
+            (
+                trackProgress.value / 100
+            ) *
             favoriteTrack.duration;
 
     }
-
-});
-
-
-// 🔊 ГРОМКОСТЬ 1–100
-
-const volumeValue = document.getElementById("volumeValue");
-
-volumeProgress.addEventListener("input", () => {
-
-    const volume = Number(volumeProgress.value);
-
-    favoriteTrack.volume = volume / 100;
-    favoriteTrack.muted = false;
-
-    volumeValue.textContent = volume;
-
-});
+);
 
 
-// 🔇 ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ ЗВУК
+// ==========================================
+// 🔊 ГРОМКОСТЬ
+// ==========================================
 
-volumeTrack.addEventListener("click", () => {
+volumeProgress.addEventListener(
+    "input",
+    function () {
 
-    favoriteTrack.muted = !favoriteTrack.muted;
+        const volume =
+            Number(
+                volumeProgress.value
+            );
 
-});
-
-
-// 🔇 КНОПКА ОТКЛЮЧЕНИЯ ЗВУКА
-
-volumeTrack.addEventListener("click", () => {
-
-    if (favoriteTrack.muted) {
+        favoriteTrack.volume =
+            volume / 100;
 
         favoriteTrack.muted = false;
 
-        volumeTrack.textContent =
-            volumeProgress.value <= 50 ? "🔈" : "🔊";
-
-    } else {
-
-        favoriteTrack.muted = true;
-
-        volumeTrack.textContent = "🔇";
+        volumeValue.textContent =
+            volume;
 
     }
+);
+
+
+// ==========================================
+// 🔇 MUTE
+// ==========================================
+
+volumeTrack.addEventListener(
+    "click",
+    function () {
+
+        if (favoriteTrack.muted) {
+
+            favoriteTrack.muted = false;
+
+        } else {
+
+            favoriteTrack.muted = true;
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// 🎵 ВЫБОР ТРЕКА
+// ==========================================
+
+playlistItems.forEach(function (item) {
+
+    item.addEventListener(
+        "click",
+        function () {
+
+            const src =
+                item.dataset.src;
+
+            const cover =
+                item.dataset.cover;
+
+            const title =
+                item.dataset.title;
+
+            const artist =
+                item.dataset.artist;
+
+
+            // меняем информацию
+
+            currentCover.src =
+                cover;
+
+            currentTitle.textContent =
+                title;
+
+            currentArtist.textContent =
+                artist;
+
+
+            // меняем музыку
+
+            favoriteTrack.src =
+                src;
+
+            favoriteTrack.load();
+
+
+            // сбрасываем прогресс
+
+            trackProgress.value =
+                0;
+
+            trackTime.textContent =
+                "0:00";
+
+
+            // активный трек
+
+            playlistItems.forEach(
+                function (track) {
+
+                    track.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+            item.classList.add(
+                "active"
+            );
+
+
+            // запускаем
+
+            favoriteTrack.play();
+
+            playTrack.textContent =
+                "❚❚";
+
+        }
+    );
 
 });
 
+
+// ==========================================
 // 🎵 ТРЕК ЗАКОНЧИЛСЯ
+// ==========================================
 
-favoriteTrack.addEventListener("ended", () => {
+favoriteTrack.addEventListener(
+    "ended",
+    function () {
 
-    playTrack.textContent = "▶";
-    trackProgress.value = 0;
-    trackTime.textContent = "0:00";
+        playTrack.textContent =
+            "▶";
 
-});
+        trackProgress.value =
+            0;
+
+        trackTime.textContent =
+            "0:00";
+
+
+        // выключаем эквалайзер
+
+        playlistItems.forEach(
+            function (track) {
+
+                track.classList.remove(
+                    "playing"
+                );
+
+            }
+        );
+
+    }
+);
