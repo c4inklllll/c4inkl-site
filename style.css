@@ -2007,3 +2007,180 @@ body::before {
     margin-top: 50px;
     margin-bottom: 40px;
 }
+/* ==========================================
+   📱 МОБИЛЬНАЯ ВЕРСИЯ
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+        overflow-x: hidden;
+    }
+
+    /* Шестерёнка */
+    .settings-button {
+        top: 12px !important;
+        right: 12px !important;
+        width: 44px;
+        height: 44px;
+        font-size: 21px;
+    }
+
+    /* Окно настроек */
+    .settings-panel {
+        top: 68px !important;
+        right: 12px !important;
+        width: calc(100% - 24px);
+        max-width: 310px;
+    }
+
+    /* Карточка профиля */
+    .card {
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 18px;
+        border-radius: 18px;
+    }
+
+    /* Фото профиля */
+    .photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* Заголовки */
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    /* Любимый трек */
+    .favorite-track {
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    .favorite-track > h2 {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    /* Карточка плеера */
+    .track-card {
+        width: 100%;
+        padding: 14px;
+        gap: 12px;
+        border-radius: 16px;
+    }
+
+    /* Обложка */
+    .track-cover {
+        width: 70px;
+        height: 70px;
+    }
+
+    /* Информация о треке */
+    .track-info {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .track-info h3 {
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .track-info p {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    /* Плеер */
+    .custom-player {
+        width: 100%;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .play-track {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 14px;
+    }
+
+    #trackTime,
+    #trackDuration {
+        font-size: 10px;
+        min-width: 27px;
+    }
+
+    .track-progress {
+        min-width: 30px;
+    }
+
+    /* Громкость */
+    .volume-control {
+        flex-shrink: 0;
+    }
+
+    .volume-track {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Плейлист */
+    .playlist {
+        width: 100%;
+        max-width: 100%;
+        margin: 40px auto 30px;
+    }
+
+    .playlist-item {
+        width: 100%;
+        min-width: 0;
+        padding: 10px;
+    }
+
+    .playlist-item img {
+        width: 55px;
+        height: 55px;
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .playlist-info {
+        min-width: 0;
+        flex: 1;
+        text-align: left;
+    }
+
+    .playlist-info strong,
+    .playlist-info small {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Ссылки */
+    .links {
+        gap: 8px;
+    }
+
+    .links a {
+        padding: 10px 13px;
+        font-size: 14px;
+    }
+
+    /* Поле сообщения */
+    #anonymousMessage {
+        font-size: 15px;
+    }
+}
