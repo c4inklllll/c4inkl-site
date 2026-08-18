@@ -1709,7 +1709,7 @@ body::before {
 .playlist {
     width: min(650px, 100%);
 
-    margin: 25px auto 0;
+    margin: 45px auto 0;
 
     padding: 18px;
 
