@@ -1628,3 +1628,62 @@ body::after {
     position: relative;
     z-index: 1;
 }
+/* ==========================================
+   ✨ ПЛАВАЮЩИЕ ЧАСТИЦЫ НА ФОНЕ
+   ========================================== */
+
+body {
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "✦   ·      ✧        ·   ✦      ·        ✧   ·      ✦";
+
+    position: fixed;
+
+    top: 0;
+    left: -10%;
+
+    width: 120%;
+    height: 100%;
+
+    color: var(--accent);
+
+    font-size: 22px;
+    letter-spacing: 45px;
+    line-height: 90px;
+
+    opacity: 0.18;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: starsMove 18s linear infinite;
+}
+
+@keyframes starsMove {
+
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(35px) translateX(20px);
+    }
+
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+}
+
+
+/* Сайт поверх частиц */
+
+.card,
+.settings-button,
+.settings-panel {
+    position: relative;
+    z-index: 1;
+}
