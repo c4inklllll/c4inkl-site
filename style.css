@@ -1687,3 +1687,18 @@ body::before {
     position: relative;
     z-index: 1;
 }
+/* ✨ Эффект наведения на главную карточку */
+
+.card {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25),
+        0 0 30px var(--accent);
+}
