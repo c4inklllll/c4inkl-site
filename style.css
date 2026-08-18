@@ -1702,3 +1702,304 @@ body::before {
         0 15px 40px rgba(0, 0, 0, 0.25),
         0 0 30px var(--accent);
 }
+/* ==========================================
+   🎵 PLAYLIST
+   ========================================== */
+
+.playlist {
+    width: min(650px, 100%);
+
+    margin: 25px auto 0;
+
+    padding: 18px;
+
+    background: var(--card-bg);
+
+    border: 2px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px var(--shadow);
+}
+
+
+.playlist-title {
+    margin: 0 0 14px;
+
+    color: var(--title);
+
+    text-align: left;
+
+    font-size: 22px;
+}
+
+
+/* ==========================================
+   🎵 ОДИН ТРЕК
+   ========================================== */
+
+.playlist-item {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 12px;
+
+    margin-bottom: 8px;
+
+    border: 1px solid transparent;
+
+    border-radius: 14px;
+
+    background: transparent;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.playlist-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.playlist-item:hover {
+    transform: translateX(5px);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 10%,
+            transparent
+        );
+}
+
+
+/* ==========================================
+   ⭐ ТЕКУЩИЙ ТРЕК
+   ========================================== */
+
+.playlist-item.active {
+
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 15%,
+            transparent
+        );
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 18px
+        color-mix(
+            in srgb,
+            var(--accent) 25%,
+            transparent
+        );
+}
+
+
+/* ==========================================
+   ▶ КНОПКА
+   ========================================== */
+
+.playlist-play {
+
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================
+   🖼 ОБЛОЖКА
+   ========================================== */
+
+.playlist-item img {
+
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 15px var(--shadow);
+}
+
+
+/* ==========================================
+   📝 НАЗВАНИЕ
+   ========================================== */
+
+.playlist-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.playlist-info strong {
+
+    color: var(--title);
+
+    font-size: 16px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.playlist-info small {
+
+    color: var(--subtitle);
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   📊 ЭКВАЛАЙЗЕР
+   ========================================== */
+
+.playlist-equalizer {
+
+    display: none;
+
+    align-items: end;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    width: 28px;
+
+    height: 25px;
+}
+
+
+.playlist-item.active
+.playlist-equalizer {
+
+    display: flex;
+}
+
+
+.playlist-equalizer i {
+
+    display: block;
+
+    width: 4px;
+
+    height: 8px;
+
+    border-radius: 4px;
+
+    background: var(--accent);
+
+    animation:
+        equalizer 0.8s
+        ease-in-out
+        infinite alternate;
+}
+
+
+.playlist-equalizer i:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.playlist-equalizer i:nth-child(3) {
+    animation-delay: -0.5s;
+}
+
+.playlist-equalizer i:nth-child(4) {
+    animation-delay: -0.1s;
+}
+
+
+@keyframes equalizer {
+
+    from {
+        height: 5px;
+    }
+
+    to {
+        height: 24px;
+    }
+
+}
+
+
+/* ==========================================
+   📱 ТЕЛЕФОН
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    .playlist {
+        padding: 12px;
+    }
+
+    .playlist-item {
+        gap: 9px;
+        padding: 9px;
+    }
+
+    .playlist-item img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .playlist-play {
+        width: 34px;
+        height: 34px;
+    }
+
+    .playlist-info strong {
+        font-size: 14px;
+    }
+
+}
