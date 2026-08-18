@@ -126,84 +126,239 @@
 
 <section class="favorite-track">
 
-  <h2 class="my-fav-track-title">my fav track</h2>
+  <h2>my fav track</h2>
 
+  <!-- ГЛАВНЫЙ ПЛЕЕР -->
   <div class="track-card">
 
     <div class="track-cover">
-  <img src="opiaty.jpg" alt="Опиаты Круг — Платина">
-</div>
+      <img
+        id="currentCover"
+        src="opiaty.jpg"
+        alt="Опиаты"
+      >
+    </div>
 
     <div class="track-info">
 
-      <h3>Опиаты</h3>
+      <h3 id="currentTitle">Опиаты</h3>
 
-      <p>Платина</p>
+      <p id="currentArtist">Платина</p>
 
       <div class="custom-player">
 
-  <button id="playTrack" class="play-track" type="button">
-    ▶
-  </button>
-
-  <span id="trackTime">0:00</span>
-
-  <input
-    id="trackProgress"
-    class="track-progress"
-    type="range"
-    min="0"
-    max="100"
-    value="0"
-  >
-
-  <span id="trackDuration">0:00</span>
-
-  <div class="volume-control">
-
-    <div class="volume-popup">
-        <input
-            id="volumeProgress"
-            class="volume-progress"
-            type="range"
-            min="1"
-            max="100"
-            value="100"
-            title="Громкость"
+        <button
+          id="playTrack"
+          class="play-track"
+          type="button"
         >
-        
+          ▶
+        </button>
+
+        <span id="trackTime">0:00</span>
+
+        <input
+          id="trackProgress"
+          class="track-progress"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+        >
+
+        <span id="trackDuration">0:00</span>
+
+        <div class="volume-control">
+
+          <div class="volume-popup">
+
+            <input
+              id="volumeProgress"
+              class="volume-progress"
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              title="Громкость"
+            >
+
+            <span id="volumeValue">100</span>
+
+          </div>
+
+          <button
+            id="volumeTrack"
+            class="volume-track"
+            type="button"
+            aria-label="Громкость"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="21"
+              height="21"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+              <path d="M19 5a10 10 0 0 1 0 14"></path>
+            </svg>
+          </button>
+
+        </div>
+
+      </div>
+
+      <audio id="favoriteTrack">
+        <source src="opiaty.mp3" type="audio/mpeg">
+      </audio>
+
     </div>
+
+  </div>
+
+
+  <!-- PLAYLIST -->
+
+  <div class="playlist">
+
+    <h3 class="playlist-title">
+      ♫ my playlist
+    </h3>
+
+
+    <!-- ТРЕК 1 -->
 
     <button
-        id="volumeTrack"
-        class="volume-track"
-        type="button"
-        aria-label="Громкость"
+      class="playlist-item active"
+      data-src="opiaty.mp3"
+      data-cover="opiaty.jpg"
+      data-title="Опиаты"
+      data-artist="Платина"
+      type="button"
     >
-        <svg
-            viewBox="0 0 24 24"
-            width="21"
-            height="21"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        >
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-            <path d="M19 5a10 10 0 0 1 0 14"></path>
-        </svg>
+
+      <span class="playlist-play">
+        ▶
+      </span>
+
+      <img
+        src="opiaty.jpg"
+        alt=""
+      >
+
+      <span class="playlist-info">
+
+        <strong>1. Опиаты</strong>
+
+        <small>Платина</small>
+
+      </span>
+
+      <span class="playlist-equalizer">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+
     </button>
 
-</div>
 
-</div>
+    <!-- ТРЕК 2 -->
 
-<audio id="favoriteTrack">
-  <source src="opiaty.mp3" type="audio/mpeg">
-</audio>
-    </div>
+    <button
+      class="playlist-item"
+      data-src="track2.mp3"
+      data-cover="cover2.jpg"
+      data-title="Трек 2"
+      data-artist="Платина"
+      type="button"
+    >
+
+      <span class="playlist-play">
+        ▶
+      </span>
+
+      <img
+        src="cover2.jpg"
+        alt=""
+      >
+
+      <span class="playlist-info">
+
+        <strong>2. Трек 2</strong>
+
+        <small>Платина</small>
+
+      </span>
+
+    </button>
+
+
+    <!-- ТРЕК 3 -->
+
+    <button
+      class="playlist-item"
+      data-src="track3.mp3"
+      data-cover="cover3.jpg"
+      data-title="Трек 3"
+      data-artist="Платина"
+      type="button"
+    >
+
+      <span class="playlist-play">
+        ▶
+      </span>
+
+      <img
+        src="cover3.jpg"
+        alt=""
+      >
+
+      <span class="playlist-info">
+
+        <strong>3. Трек 3</strong>
+
+        <small>Платина</small>
+
+      </span>
+
+    </button>
+
+
+    <!-- ТРЕК 4 -->
+
+    <button
+      class="playlist-item"
+      data-src="track4.mp3"
+      data-cover="cover4.jpg"
+      data-title="Трек 4"
+      data-artist="Платина"
+      type="button"
+    >
+
+      <span class="playlist-play">
+        ▶
+      </span>
+
+      <img
+        src="cover4.jpg"
+        alt=""
+      >
+
+      <span class="playlist-info">
+
+        <strong>4. Трек 4</strong>
+
+        <small>Платина</small>
+
+      </span>
+
+    </button>
 
   </div>
 
